@@ -29,6 +29,17 @@ class Product {
         return products
     }
 
+    async deleteById(id) {
+        const [result] = await this.productRepository.findById(id);
+        if (!result) {
+            const error = new Error("Aucun produit trouvé pour cet id");
+            error.status = 400;
+            throw error;
+        }
+        await this.productRepository.removeById(id)
+        return id
+    }
+
 }
 
 module.exports = Product

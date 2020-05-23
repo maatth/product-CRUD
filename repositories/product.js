@@ -22,6 +22,16 @@ class Product {
         }
     }
 
+    async removeById(id) {
+        try {
+            const db = await poolPromise
+            await db.query("DELETE FROM product WHERE id = ?", [id])
+        } catch (error) {
+            error.status = 503;
+            throw error;
+        }
+    }
+
 
 }
 
