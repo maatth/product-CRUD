@@ -2,9 +2,9 @@
     "port": 8090,
     "db": {
         "connectionLimit":10,
-        "host": "locahost",
+        "host": "localhost",
         "database": "productmanager",
         "user": "root",
-        "password": "snoopy"
+        "password": "snoopy15"
     }
 }

@@ -5,7 +5,7 @@ class Product {
 
     async getAll() {
         const productRepository = new ProductRepository()
-        results = await productRepository.findAll()
+        const results = await productRepository.findAll()
         const products = []; 
         results.forEach(result => {
             const productModel = new ProductModel(result.id, result.name)

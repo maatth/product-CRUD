@@ -4,7 +4,7 @@ class Product {
 
     async findAll() {
         try {
-            const db = await poolPromise()
+            const db = await poolPromise
             return db.query("SELECT * FROM product")
         } catch (error) {
             error.status = 503
