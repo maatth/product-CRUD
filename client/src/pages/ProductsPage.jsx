@@ -1,11 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import ProductAPI from "../services/ProductAPI"
 
 const ProductsPage = () => {
 
+    const [products, setProducts] = useState([])
+
     const fetchProducts = async () => {
         try {
-            ProductAPI.findAll()
+            const response = await ProductAPI.findAll()
+            setProducts(response.data)
         } catch (error) {
             console.log(error.data)
         }
@@ -25,15 +28,17 @@ const ProductsPage = () => {
               </tr>
             </thead>
             <tbody>
-            <tr key={1}>
-                  <td>1</td>
-                  <td>"testname"</td>
-                  <td>
-                    <button className="btn btn-sm btn-danger">
-                      Supprimer
-                    </button>
-                  </td>
-                </tr>
+                { products.map((product) => (
+                    <tr key={product.id}>
+                    <td>{product.id}</td>
+                    <td>{product.name}</td>
+                    <td>
+                        <button className="btn btn-sm btn-danger">
+                        Supprimer
+                        </button>
+                    </td>
+                    </tr>
+                )) }
             </tbody>
           </table>
         </>
