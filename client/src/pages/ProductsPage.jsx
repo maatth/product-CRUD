@@ -14,7 +14,20 @@ const ProductsPage = () => {
         }
     }
 
-    useEffect(() => fetchProducts(), [])
+    useEffect(() => {fetchProducts()}, [])
+
+    const handleDelete = async id => {
+        const productsClone = [...products];
+        setProducts(products.filter((product) => product.id !== id));
+        
+        try {
+            await ProductAPI.delete(id)
+        } catch (error) {
+            console.log(error.response);
+            setProducts(productsClone); //get old data back if fail
+        }
+        console.log("Product deleted !");
+    };
 
     return (
         <>
@@ -33,9 +46,12 @@ const ProductsPage = () => {
                     <td>{product.id}</td>
                     <td>{product.name}</td>
                     <td>
-                        <button className="btn btn-sm btn-danger">
+                    <button
+                        className="btn btn-sm btn-danger"
+                        onClick={() => handleDelete(product.id)}
+                        >
                         Supprimer
-                        </button>
+                    </button>
                     </td>
                     </tr>
                 )) }
