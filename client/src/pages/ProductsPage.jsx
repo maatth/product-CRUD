@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react';
-import axios from 'axios';
+import ProductAPI from "../services/ProductAPI"
 
 const ProductsPage = () => {
 
     const fetchProducts = async () => {
-        axios.get("http://localhost:9000/api/v1/products")
-            .then(response => console.log(response.data))
-            .catch(error => console.log(error.data))
+        try {
+            ProductAPI.findAll()
+        } catch (error) {
+            console.log(error.data)
+        }
     }
 
     useEffect(() => fetchProducts(), [])
