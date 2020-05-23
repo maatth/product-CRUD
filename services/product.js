@@ -3,9 +3,24 @@ const ProductModel = require('../models/product')
 
 class Product {
 
+    constructor() {
+        this.productRepository = new ProductRepository()
+    }
+
+    async getById(id) {
+        const [result] = await this.productRepository.findById(id)
+
+        if (!result) {
+            new Error("Aucun produit trouvé pour cet id")
+            error.status = 400
+            throw error
+        }
+
+        return new ProductModel(result.id, result.name)
+    }
+
     async getAll() {
-        const productRepository = new ProductRepository()
-        const results = await productRepository.findAll()
+        const results = await this.productRepository.findAll()
         const products = []; 
         results.forEach(result => {
             const productModel = new ProductModel(result.id, result.name)
