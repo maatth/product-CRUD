@@ -1,6 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import axios from 'axios';
 
 const ProductsPage = () => {
+
+    const fetchProducts = async () => {
+        axios.get("http://localhost:9000/api/v1/products")
+            .then(response => console.log(response.data))
+            .catch(error => console.log(error.data))
+    }
+
+    useEffect(() => fetchProducts(), [])
 
     return (
         <>
