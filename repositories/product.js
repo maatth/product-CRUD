@@ -53,6 +53,16 @@ class Product {
         }
     }
 
+    async update(id, name) {
+        try {
+            const db = await poolPromise;
+            await db.query("UPDATE product SET name = ? WHERE id = ?", [name, id]);
+        } catch (error) {
+            error.status = 503;
+            throw error;
+        }
+    }
+
 
 }
 

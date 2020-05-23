@@ -11,7 +11,7 @@ class Product {
         const [result] = await this.productRepository.findById(id)
 
         if (!result) {
-            new Error("Aucun produit trouvé pour cet id")
+            const error = new Error("Aucun produit trouvé pour cet id")
             error.status = 400
             throw error
         }
@@ -51,6 +51,14 @@ class Product {
         const productId = await this.productRepository.create(product.name);
         return await this.getById(productId);
     }
+
+    async modify(product) {
+        const productToUpdate = await this.getById(product.id);
+    
+        await this.productRepository.update(productToUpdate.id, product.name);
+    
+        return await this.getById(product.id);
+      }
 
 }
 
