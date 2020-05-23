@@ -3,16 +3,19 @@ import 'bootswatch/dist/slate/bootstrap.min.css';
 import './App.css';
 import Navbar from './components/NavBar';
 import HomePage from './pages/HomePage';
+import ProductsPage from './pages/ProductsPage';
+import {HashRouter, Switch, Route} from 'react-router-dom';
 
 function App() {
-  return (
-    <main className="App">
-      <Navbar/>
-      <div className="container pt-5">
-        <HomePage/>
-      </div>
-    </main>
-  );
+  return (<HashRouter>
+            <Navbar/>
+            <main className="container pt-5">
+              <Switch>
+                <Route path='/products' component={ProductsPage}/>
+                <Route path='/' component={HomePage}/>
+              </Switch>
+            </main>
+          </HashRouter>);
 }
 
 export default App;
