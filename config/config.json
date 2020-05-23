@@ -1,0 +1,10 @@
+{
+    "port": 8090,
+    "db": {
+        "connectionLimit":10,
+        "host": "locahost",
+        "database": "productmanager",
+        "user": "root",
+        "password": "snoopy"
+    }
+}
