@@ -40,6 +40,18 @@ class Product {
         return id
     }
 
+    async add(product) {
+        //Check if product don't exist yet
+        const findByNameProducts = await this.productRepository.findByName(product.name);
+        if( findByNameProducts.length !== 0) {
+            const error = new Error("Le produit existe déjà");
+            error.status = 400;
+            throw error;
+        }
+        const productId = await this.productRepository.create(product.name);
+        return await this.getById(productId);
+    }
+
 }
 
 module.exports = Product

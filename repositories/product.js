@@ -32,6 +32,27 @@ class Product {
         }
     }
 
+    async findByName(name) {
+        try {
+            const db = await poolPromise
+            return await db.query("SELECT * FROM product WHERE name = ?", [name])
+        } catch (error) {
+            error.status = 503
+            throw error;
+        }
+      }
+
+    async create(name) {
+        try {
+            const db = await poolPromise;
+            const result = await db.query("INSERT INTO product(name) VALUES(?)", [name]);
+            return result.insertId;
+        } catch (error) {
+            error.status = 503;
+            throw error;
+        }
+    }
+
 
 }
 
