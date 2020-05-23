@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ProductAPI from "../services/ProductAPI"
+import { Link } from "react-router-dom"
 
 const ProductsPage = () => {
 
@@ -31,32 +32,35 @@ const ProductsPage = () => {
 
     return (
         <>
-          <h1>Liste de produits</h1>
-          <table className="table table-hover">
-            <thead>
-              <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th />
-              </tr>
-            </thead>
-            <tbody>
-                { products.map((product) => (
-                    <tr key={product.id}>
-                    <td>{product.id}</td>
-                    <td>{product.name}</td>
-                    <td>
-                    <button
-                        className="btn btn-sm btn-danger"
-                        onClick={() => handleDelete(product.id)}
-                        >
-                        Supprimer
-                    </button>
-                    </td>
-                    </tr>
-                )) }
-            </tbody>
-          </table>
+            <h1>Liste de produits</h1>
+            <Link to="/products/new" className="btn btn-primary mb-3">
+                Créer un produit
+            </Link>
+            <table className="table table-hover">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th />
+                </tr>
+                </thead>
+                <tbody>
+                    { products.map((product) => (
+                        <tr key={product.id}>
+                        <td>{product.id}</td>
+                        <td>{product.name}</td>
+                        <td>
+                        <button
+                            className="btn btn-sm btn-danger"
+                            onClick={() => handleDelete(product.id)}
+                            >
+                            Supprimer
+                        </button>
+                        </td>
+                        </tr>
+                    )) }
+                </tbody>
+            </table>
         </>
       );
 }
