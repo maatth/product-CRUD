@@ -1,10 +1,11 @@
 {
-    "port": 8090,
+    "port": 5000,
     "db": {
         "connectionLimit":10,
         "host": "localhost",
         "database": "productmanager",
         "user": "root",
-        "password": "snoopy15"
+        "password": "snoopy15",
+        "port":3306
     }
 }
