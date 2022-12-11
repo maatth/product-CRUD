@@ -12,7 +12,7 @@
     "cors": "^2.8.5",
     "create-react-app": "^3.4.1",
     "debug": "~2.6.9",
-    "express": "~4.16.1",
+    "express": "~4.18.2",
     "glob": "^7.1.6",
     "http-errors": "~1.6.3",
     "morgan": "~1.9.1",
